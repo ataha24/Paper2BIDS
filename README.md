@@ -171,8 +171,8 @@ If you use Paper2BIDS in your research, please cite:
 
 ```bibtex
 @software{paper2bids,
-  title = {Paper2BIDS: Transform Neuroimaging Papers into Reproducible Snakebids Applications},
-  year = {2024},
-  url = {https://github.com/yourorg/paper2bids}
+  title = {Paper2BIDS: Transform Neuroimaging Papers into Reproducible BIDS Applications},
+  year = {2026},
+  url = {https://github.com/ataha24/paper2bids}
 }
 ```
