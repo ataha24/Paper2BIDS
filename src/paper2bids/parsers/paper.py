@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from pypdf import PdfReader
+import fitz  # PyMuPDF - better for complex layouts like Nature journals
 
 from paper2bids.models import PaperContent
 
@@ -84,20 +84,26 @@ class PaperParser:
     def parse_pdf(self, pdf_path: Path) -> PaperContent:
         """Parse a PDF file and extract content.
 
+        Uses PyMuPDF (fitz) for better handling of complex multi-column
+        layouts common in journals like Nature, Science, etc.
+
         Args:
             pdf_path: Path to the PDF file.
 
         Returns:
             PaperContent with extracted information.
         """
-        reader = PdfReader(pdf_path)
+        doc = fitz.open(pdf_path)
 
         full_text = ""
-        for page in reader.pages:
-            text = page.extract_text()
+        for page in doc:
+            # Use "text" extraction with sorting for proper reading order
+            # This handles multi-column layouts much better than pypdf
+            text = page.get_text("text", sort=True)
             if text:
                 full_text += text + "\n"
 
+        doc.close()
         return self._parse_text(full_text)
 
     def parse_text(self, text: str) -> PaperContent:
