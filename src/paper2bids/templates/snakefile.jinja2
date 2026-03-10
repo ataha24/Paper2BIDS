@@ -66,7 +66,7 @@ rule {{ step.name }}:
     {% if step.parameters %}
     params:
         {% for key, value in step.parameters.items() %}
-        {{ key }}=config.get('{{ key }}', {{ value | repr }}),
+        {{ key }}=config.get('{{ key }}', '{{ value }}'),
         {% endfor %}
     {% endif %}
     {% if step.software %}
