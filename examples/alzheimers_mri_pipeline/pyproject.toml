@@ -3,24 +3,21 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "nature_neuroscience"
+name = "samba"
 version = "0.1.0"
-description = "Cannot determine - insufficient paper content provided"
+description = "Pipeline generated from code repository"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "antspyx",
     "nibabel",
     "nibabel>=4.0",
-    "nipype",
-    "pybids",
+    "numpy",
     "pybids>=0.15",
-    "snakebids",
     "snakebids>=0.10"
 ]
 
 [project.scripts]
-nature_neuroscience = "run:app.run"
+samba = "run:app.run"
 
 [tool.hatch.build.targets.wheel]
 packages = ["workflow"]
